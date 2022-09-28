@@ -7,15 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stensjökvarns Simsällskap</title>
 
-    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <h1>Välkommen till Stensjökvarns Simsällskap</h1>
-
-        <form>
+        <form id="loginform">
             <label for="username">Namn</label>
             <input type="text" name="username" />
 
@@ -23,6 +21,14 @@
             <input type="password" name="password" />
 
             <input type="submit" value="LOGGA IN" />
+        </form>
+        <form id="logoutform" class="hidden">
+            <h2 id="status"></h2>
+            <input type="submit" value="LOGGA UT">
+        </form>
+        <form id="invalidloginform" class="hidden">
+            <h2>Fel inloggningsuppgifter</h2>
+            <input type="submit" value="Försök igen" />
         </form>
     </header>
     <article>
@@ -69,12 +75,16 @@
             Donec
             venenatis odio vel interdum varius.
         </p>
+    </article>
+    <section id="images">
         <img src="swim.jpg" alt="competing swimmers" />
         <img src="swim2.jpg" alt="swimmer" />
         <img src="swim3.jpg" alt="another swimmer" />
-    </article>
-
+        <img src="swim4.jpg" alt="and another swimmer" />
+    </section>
     <footer><a href="#top">&#11014;</a> &copy; John Pettersson 2022 | <span>Email: <a href="mailto:pejo22uc@student.ju.se">pejo22uc@student.ju.se</a></span></footer>
+
+    <script src="script.js"></script>
 
 </body>
 
