@@ -1,12 +1,15 @@
 /**
-// HTML consists of 3 forms, login, logout and a "return to login" form.
- * 
+ * @author John Pettersson
+// The HTML consists of 3 forms, login, logout and a "return to login" form.
+ * This code handles login/logout and swapping visibility between the forms
  */
+
+const USER_LOCAL_STORAGE_KEY = "User";
 
 const VALID_USERNAME = "Sara";
 const VALID_PASSWORD = "qwe123"
 
-// Below i fetch the forms and add eventhandlers for onsubmit
+// Below i find the forms and add eventhandlers for onsubmit
 const loginForm = document.getElementById("loginform");
 loginForm.addEventListener("submit", onLoginSubmit);
 
@@ -21,9 +24,10 @@ const statusText = document.getElementById("status");
 
 
 function isLoggedIn() {
-    return localStorage.getItem("user") !== null;
+    return localStorage.getItem(USER_LOCAL_STORAGE_KEY) !== null;
 }
 
+// if user is logged in -> swap to logoutform
 if(isLoggedIn()) {
     statusText.innerText = "Du är inloggad som: " + VALID_USERNAME;
     swapForms();
@@ -38,7 +42,7 @@ function swapForms() {
 
 function onLogoutSubmit(e) {
     //remove user form localStorage and swap back to loginForm
-    localStorage.removeItem("user");
+    localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
     swapForms();
 
     //prevents form from being sent to backend
@@ -52,9 +56,9 @@ function onLoginSubmit(e) {
     let formData = new FormData(loginForm);
     let user = formData.get("username");
     let password = formData.get("password");
-
+    
     if(user == VALID_USERNAME && password == VALID_PASSWORD) { //save user in localStorage
-        localStorage.setItem("user", VALID_USERNAME);
+        localStorage.setItem(USER_LOCAL_STORAGE_KEY, VALID_USERNAME);
         statusText.innerText = "Du är inloggad som: " + VALID_USERNAME;
         swapForms();
     } else { // swap to invalidLoginForm
