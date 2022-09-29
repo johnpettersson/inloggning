@@ -54,15 +54,15 @@ function onLogoutSubmit(e) {
 function onLoginSubmit(e) {
     //gets data from the loginform
     let formData = new FormData(loginForm);
-    let user = formData.get("username");
+    let user = formData.get("username");    
     let password = formData.get("password");
+    loginForm.reset(); //clears data in loginForm
     
     if(user == VALID_USERNAME && password == VALID_PASSWORD) { //save user in localStorage
         localStorage.setItem(USER_LOCAL_STORAGE_KEY, VALID_USERNAME);
         statusText.innerText = "Du är inloggad som: " + VALID_USERNAME;
         swapForms();
-    } else { // swap to invalidLoginForm
-        loginForm.reset();
+    } else { // invalid user/pw -> swap to invalidLoginForm
         loginForm.classList.add("hidden");
         invalidloginform.classList.remove("hidden");
     }
